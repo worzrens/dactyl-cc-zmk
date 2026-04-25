@@ -1,7 +1,7 @@
 if SHIELD_DACTYL_CC_LEFT
 
     config ZMK_KEYBOARD_NAME
-        default "Dactyl CC"
+        default "Kekoriki360"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
@@ -10,7 +10,7 @@ endif
 if SHIELD_DACTYL_CC_RIGHT
 
     config ZMK_KEYBOARD_NAME
-        default "Dactyl CC Right"
+        default "Kekoriki360"
 
 endif
 

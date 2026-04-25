@@ -1,1 +1,8 @@
 config/boards/shields/.DS_Store
+.build/
+build/
+.west/
+modules/
+zephyr/
+zmk/
+.idea/
