@@ -11,6 +11,9 @@ KEYMAP_FILE="/workdir/config/dactyl_cc.keymap"
 
 mkdir -p "${OUT_DIR}"
 
+rm -f "${OUT_DIR}/dactyl_cc_left.uf2" "${OUT_DIR}/dactyl_cc_right.uf2"
+rm -f "${BUILD_DIR}/docker-left/zephyr/zmk.uf2" "${BUILD_DIR}/docker-right/zephyr/zmk.uf2"
+
 docker run --rm \
   -v "${ROOT_DIR}:/workdir" \
   -w /workdir \

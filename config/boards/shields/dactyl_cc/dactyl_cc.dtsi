@@ -69,15 +69,15 @@
             , <&key_physical_attrs 100 100  920 430 0 0 0>
             , <&key_physical_attrs 100 100 1020 430 0 0 0>
             , <&key_physical_attrs 100 100 1120 430 0 0 0>
-            , <&key_physical_attrs 100 100  470 540 0 0 0>
             , <&key_physical_attrs 100 100  370 540 0 0 0>
+            , <&key_physical_attrs 100 100  470 540 0 0 0>
             , <&key_physical_attrs 100 100  730 540 0 0 0>
             , <&key_physical_attrs 100 100  830 540 0 0 0>
             , <&key_physical_attrs 100 100  470 650 0 0 0>
             , <&key_physical_attrs 100 100  730 650 0 0 0>
-            , <&key_physical_attrs 100 100  470 780 0 0 0>
-            , <&key_physical_attrs 100 100  370 780 0 0 0>
             , <&key_physical_attrs 100 100  270 780 0 0 0>
+            , <&key_physical_attrs 100 100  370 780 0 0 0>
+            , <&key_physical_attrs 100 100  470 780 0 0 0>
             , <&key_physical_attrs 100 100  730 780 0 0 0>
             , <&key_physical_attrs 100 100  830 780 0 0 0>
             , <&key_physical_attrs 100 100  930 780 0 0 0>
@@ -111,6 +111,7 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)                   RC(3,11) RC(3,
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
+        wakeup-source;
 
         diode-direction = "col2row";
         row-gpios
