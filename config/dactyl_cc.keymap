@@ -15,34 +15,66 @@
 };
 
 / {
+    behaviors {
+        /*
+         * gresc_ht:
+         * - tap: ESC
+         * - hold: GRAVE
+         * - tap+hold/chord: ESC
+         */
+        gresc_ht: gresc_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&kp GRAVE>, <&kp ESC>;
+        };
+
+        /*
+         * bspc_sym_ht:
+         * - tap: BSPC
+         * - hold: MO(SYM)
+         * - tap+hold/chord: BSPC
+         */
+        bspc_sym_ht: bspc_sym_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&mo SYM>, <&kp BSPC>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "Default";
             bindings = <
-&gresc       &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
+&gresc_ht    &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
 &lt FN TAB   &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P       &kp LBKT
-&none        &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
+&trans       &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
 &mo BTM      &kp Z       &kp X       &kp C       &kp V       &kp B       &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
-             &kp LG(SPACE) &none     &kp LEFT    &kp RIGHT                            &kp DOWN    &kp UP      &none       &kp PSCRN
-                                               &kp EQUAL   &kp LGUI    &none       &mt LCTRL RET
+             &kp LG(SPACE) &trans    &kp LEFT    &kp RIGHT                            &kp DOWN    &kp UP      &trans      &kp PSCRN
+                                               &kp EQUAL   &kp LGUI    &trans      &mt LCTRL RET
                                                            &kp LALT    &kp TAB
-                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &kp BSPC
+                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &bspc_sym_ht
             >;
         };
 
         fn_layer {
             display-name = "fn";
             bindings = <
-&none &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11
-&none &none &none &none &none &none &none &none &none &none &none &kp F12
-&none &none &none &none &none &none &none &none &none &none &none &none
-&none &none &none &none &none &none &none &none &none &none &none &none
-      &none &none &none &none                         &none &none &none &none
-                              &none &none &none &none
-                                          &none &none
-                   &none &none &none &none &none &none
+&trans &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp F12
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+      &trans &trans &trans &trans                         &trans &trans &trans &trans
+                              &trans &trans &trans &trans
+                                          &trans &trans
+                   &trans &trans &trans &trans &trans &trans
             >;
         };
 
@@ -50,9 +82,9 @@
             display-name = "Symbols";
             bindings = <
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &kp EQUAL &kp MINUS &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp C_VOL_UP
+&trans &trans &trans &trans &trans &kp EQUAL &kp MINUS &trans &trans &trans &trans &kp C_VOL_DN
+&trans &trans &trans &trans &trans &trans &trans &trans &kp LBKT &kp RBKT &trans &kp C_MUTE
       &trans &trans &trans &trans                         &trans &trans &trans &trans
                               &trans &trans &trans &trans
                                           &trans &trans
@@ -63,14 +95,14 @@
         bt_media_layer {
             display-name = "BT+Media";
             bindings = <
-&none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &none &none &none &none &none &none &none
-&none &none &none &none &none &none &none &none &none &none &none &none
-&bt BT_CLR &none &none &none &none &none &none &none &none &none &none &none
-&none &none &none &none &none &none &none &none &none &none &none &none
-      &none &none &none &none                         &none &none &none &none
-                              &none &none &none &none
-                                          &none &none
-                   &none &none &none &none &none &none
+&trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&bt BT_CLR &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+      &trans &trans &trans &trans                         &trans &trans &trans &trans
+                              &trans &trans &trans &trans
+                                          &trans &trans
+                   &trans &trans &trans &trans &trans &trans
             >;
         };
     };
