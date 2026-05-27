@@ -17,12 +17,12 @@
 / {
     behaviors {
         /*
-         * esc_grave:
-         * - tap: ESC
-         * - hold: GRAVE
-         * - tap+hold/chord: ESC
+         * og_tap_hold:
+         * - tap: btn1 tap
+         * - hold: btn2 hold
+         * - tap+hold: btn1 hold
          */
-        esc_grave: esc_grave_hold_tap {
+        og_tap_hold: og_tap_hold_behavior {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -53,14 +53,14 @@
         default_layer {
             display-name = "Default";
             bindings = <
-&esc_grave GRAVE ESC    &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
-&lt FN TAB   &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P       &kp LBKT
+&og_tap_hold GRAVE ESC    &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
+&og_tap_hold FN TAB       &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P       &kp LBKT
 &trans       &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
 &mo BTM      &kp Z       &kp X       &kp C       &kp V       &kp B       &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
              &kp LG(SPACE) &trans    &kp LEFT    &kp RIGHT                            &kp DOWN    &kp UP      &trans      &kp PSCRN
                                                &kp EQUAL   &kp LGUI    &trans      &mt LCTRL RET
                                                            &kp LALT    &kp TAB
-                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &bspc_sym_ht SYM BSPC
+                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &og_tap_hold SYM BSPC
             >;
         };
 
