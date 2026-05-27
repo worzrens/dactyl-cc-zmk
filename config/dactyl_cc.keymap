@@ -25,7 +25,7 @@
         esc_grave: esc_grave_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;    // Time required to trigger the Hold action (Grave)
             quick-tap-ms = <200>;      // Time window to trigger the Tap-and-Hold repeat (Esc)
             bindings = <&kp &kp>;   // Allows normal keys for both hold and tap
@@ -39,11 +39,11 @@
          */
         bspc_sym_ht: bspc_sym_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
-            bindings = <&mo SYM &kp BSPC>;
+            bindings = <&mo &kp>;
         };
     };
 
@@ -53,14 +53,14 @@
         default_layer {
             display-name = "Default";
             bindings = <
-&esc_grave    &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
+&esc_grave GRAVE ESC    &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
 &lt FN TAB   &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P       &kp LBKT
 &trans       &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
 &mo BTM      &kp Z       &kp X       &kp C       &kp V       &kp B       &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
              &kp LG(SPACE) &trans    &kp LEFT    &kp RIGHT                            &kp DOWN    &kp UP      &trans      &kp PSCRN
                                                &kp EQUAL   &kp LGUI    &trans      &mt LCTRL RET
                                                            &kp LALT    &kp TAB
-                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &bspc_sym_ht
+                                    &kp LSHFT  &kp SPACE    &kp LCTRL   &lt SYM RET  &mt LSHIFT SPACE &bspc_sym_ht SYM BSPC
             >;
         };
 
